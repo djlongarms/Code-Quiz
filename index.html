@@ -10,19 +10,23 @@
   <link href="style.css" rel="stylesheet">
 </head>
 <body>
-  
+  <!-- Navbar with a link to the "High Scores" list on the left and a quiz timer on the right -->
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
       <div class="col-sm-6">
+        <!-- Clicking here will bring up the "High Scores" list -->
         <span class="navbar-brand mb-0 h1">View Highscores</span>
       </div>
       <div class="col-sm-6 rightAlign">
-        <span class="navbar-brand mb-0 h1">Timer: 0</span>
+        <!-- Timer for when taking the quiz -->
+        <span id="timer" class="navbar-brand mb-0 h1">Timer: 0</span>
       </div>
     </div>
   </nav>
   
+  <!-- Container for all of the different "Sections" for the quiz -->
   <main class="container">
+    <!-- This section contains introductory text and a button for starting the quiz -->
     <section id="introduction" class="row justify-content-center">
       <article class="col-sm-6 centered">
         <h1>Coding Challenge</h1>
@@ -32,6 +36,8 @@
         <button id="start" class="btn btn-success" type="button">Start Quiz!</button>
       </article>
     </section>
+
+    <!-- This section is used for the quiz itself, updates itself for each question -->
     <section id="quiz" class="row justify-content-center hide">
       <article class="col-sm-6 centered">
         <h1 id="questionNumber"></h1>
@@ -40,6 +46,17 @@
         <button id="answer2" class="btn btn-success answer" type="button">Jane Doe</button>
         <button id="answer3" class="btn btn-success answer" type="button">Jack Doe</button>
         <button id="answer4" class="btn btn-success answer" type="button">None</button>
+      </article>
+    </section>
+
+    <!-- This section is a game over screen for if the timer runs out -->
+    <section id="gameOver" class="row justify-content-center hide">
+      <article class="col-sm-6 centered">
+        <h1>Game Over!</h1>
+        <h4>
+          You ran out of time! But don't worry, I know you can do it! Come on, give it another try!
+        </h4>
+        <button id="retry" class="btn btn-success" type="button">Retry Quiz!</button>
       </article>
     </section>
   </main>
