@@ -37,7 +37,6 @@ document.getElementById('start').addEventListener('click', () => {
   // Hides introductory text and reveals elements for quiz usage
   document.getElementById('introduction').classList.add('hide')
   document.getElementById('quiz').classList.remove('hide')
-  document.getElementById('answers').classList.remove('hide')
 
   // Sets counter to starting time and sets "Timer" text to include counter
   counter = 75
@@ -105,7 +104,6 @@ document.addEventListener('click', event => {
     else {
       // Hides the quiz display
       document.getElementById('quiz').classList.add('hide')
-      document.getElementById('answers').classList.add('hide')
       document.getElementById('introduction').classList.remove('hide')
       quizFinished = true
     }

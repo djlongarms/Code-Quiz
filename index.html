@@ -40,23 +40,25 @@
     <!-- This section is used for the quiz itself, updates itself for each question -->
     <section id="quiz" class="row justify-content-center hide">
       <article class="col-sm-6 centered">
-        <h1 id="questionNumber"></h1>
-        <h4 id="question"></h4>
+        <section id="quizQuestions" class="row">
+          <h1 id="questionNumber"></h1>
+          <h4 id="question"></h4>
+        </section>
+        <section class="row">
+          <div class="buttonMargin">
+            <button id="answer1" class="btn btn-success answer" type="button"></button>
+          </div>
+          <div class="buttonMargin">
+            <button id="answer2" class="btn btn-success answer" type="button"></button>
+          </div>
+          <div class="buttonMargin">
+            <button id="answer3" class="btn btn-success answer" type="button"></button>
+          </div>
+          <div class="buttonMargin">
+            <button id="answer4" class="btn btn-success answer" type="button"></button>
+          </div>
+        </section>
       </article>
-    </section>
-    <section id="answers" class="row hide">
-      <div>
-        <button id="answer1" class="btn btn-success answer" type="button"></button>
-      </div>
-      <div>
-        <button id="answer2" class="btn btn-success answer" type="button"></button>
-      </div>
-      <div>
-        <button id="answer3" class="btn btn-success answer" type="button"></button>
-      </div>
-      <div>
-        <button id="answer4" class="btn btn-success answer" type="button"></button>
-      </div>
     </section>
 
     <!-- This section is a game over screen for if the timer runs out -->
