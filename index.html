@@ -15,7 +15,7 @@
     <div class="container-fluid">
       <div class="col-sm-6">
         <!-- Clicking here will bring up the "High Scores" list -->
-        <span class="navbar-brand mb-0 h1">View Highscores</span>
+        <span id="viewScores" class="navbar-brand mb-0 h1">View Highscores</span>
       </div>
       <div class="col-sm-6 rightAlign">
         <!-- Timer for when taking the quiz -->
@@ -62,7 +62,7 @@
     </section>
 
     <!-- This section is a game over screen for if the timer runs out -->
-    <section id="highscores" class="row justify-content-center hide">
+    <section id="scoreSave" class="row justify-content-center hide">
       <article class="col-sm-6 centered">
         <h1>Put in your name to save your score!</h1>
         <form>
@@ -70,9 +70,18 @@
             <label for="name" class="form-label">Name</label>
             <input type="text" class="form-control" id="name">
           </div>
-          <button id="save" class="btn btn-success" type="button">Save Score!</button>
-          <button id="return" class="btn btn-success" type="button">Return to Start!</button>
+          <button id="save" class="btn btn-success" type="submit">Save Score!</button>
+          <button id="return" class="btn btn-success" type="submit">Return to Start!</button>
         </form>
+      </article>
+    </section>
+
+    <section id="highscores" class="row justify-content-center hide">
+      <article class="col-sm-3 centered">
+        <h1>High Scores!</h1>
+        <ul id ="scoresList" class="list-group"></ul>
+        <button id="returnFromScores" class="btn btn-success buttonMargin" type="button">Return to Start!</button>
+        <button id="deleteScores" class="btn btn-success buttonMargin" type="button">Delete Scores!</button>
       </article>
     </section>
   </main>

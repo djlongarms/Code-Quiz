@@ -40,6 +40,7 @@ document.getElementById('start').addEventListener('click', () => {
   // Hides introductory text and reveals elements for quiz usage
   document.getElementById('introduction').classList.add('hide')
   document.getElementById('quiz').classList.remove('hide')
+  document.getElementById('viewScores').classList.add('hide')
 
   // Sets counter to starting time and sets "Timer" text to include counter
   counter = 75
@@ -73,7 +74,7 @@ document.getElementById('start').addEventListener('click', () => {
         // Ends interval and hides the quiz materials
         clearInterval(timer)
         document.getElementById('quiz').classList.add('hide')
-        document.getElementById('highscores').remove('hide')
+        document.getElementById('scoreSave').remove('hide')
       }
     }
   }, 1000)
@@ -105,7 +106,7 @@ document.addEventListener('click', event => {
     } else {
       // Hides the quiz display
       document.getElementById('quiz').classList.add('hide')
-      document.getElementById('highscores').classList.remove('hide')
+      document.getElementById('scoreSave').classList.remove('hide')
       quizFinished = true
     }
   }
@@ -123,3 +124,49 @@ document.getElementById('save').addEventListener('click', event => {
   // Clears input value
   document.getElementById('name').value = ''
 })
+
+// Listens for click of the return button
+document.getElementById('return').addEventListener('click', event => {
+  //Hides the scores element, the shows the introduction element
+  document.getElementById('scoreSave').classList.add('hide')
+  document.getElementById('introduction').classList.remove('hide')
+  document.getElementById('viewScores').classList.remove('hide')
+})
+
+// Listens for a click on the "View Highscores" element
+document.getElementById('viewScores').addEventListener('click', () => {
+  document.getElementById('highscores').classList.remove('hide')
+  document.getElementById('introduction').classList.add('hide')
+  document.getElementById('viewScores').classList.add('hide')
+
+  document.getElementById('scoresList').innerHTML = ''
+
+  scores.forEach(element => {
+    let newScore = document.createElement('li')
+    newScore.classList.add('list-group-item')
+    newScore.textContent = element
+
+    document.getElementById('scoresList').append(newScore)
+  })
+})
+
+// Listens for a click to return from viewing high scores
+document.getElementById('returnFromScores').addEventListener('click', event => {
+  // Hides the highscores element, the shows the introduction element
+  document.getElementById('highscores').classList.add('hide')
+  document.getElementById('introduction').classList.remove('hide')
+  document.getElementById('viewScores').classList.remove('hide')
+})
+
+// Listens for a click to delete high scores
+document.getElementById('deleteScores').addEventListener('click', event => {
+  // Deletes the scores currently in local storage
+  localStorage.setItem('scores', JSON.stringify([]))
+
+  // Removes list from the currently loaded page
+  document.getElementById('scoresList').innerHTML = ''
+
+  // Sets "scores" to an empty array
+  scores = []
+})
+
