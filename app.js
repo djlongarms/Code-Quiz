@@ -1,10 +1,13 @@
+//Gets high scores from local storage
+let scores = JSON.parse(localStorage.getItem('scores')) || []
+
 // Array holding questions for quiz and an identifier for the current question
 let questions = [
-  'Which line would print the phrase "Hello World!" to the console?',
-  'Which of these',
-  'What is your favorite color?',
-  'What is the capital of Assyria?',
-  'What is the airspeed velocity of an unladen swallow?'
+  'Which of these lines would print the phrase "Hello World!" to the console?',
+  'Which of these is the correct identifier for a class?',
+  'Which of these should go at the beginning of every click listener for a button in a form?',
+  'Which of these gives the user a place to fill in a response to a question?',
+  'Which of these tags should be replaced with semantic HTML elements?'
 ]
 let current = 0
 
@@ -14,19 +17,19 @@ let quizFinished = false
 // Array of arrays for holding answers to each question
 let answers = [
   ['console.Log("Hello World!")', 'console.log(Hello World!)', 'Hello World!', 'console.log=Hello World!'],
-  ['2.1', '2.2', '2.3', '2.4'],
-  ['3.1', '3.2', '3.3', '3.4'],
-  ['4.1', '4.2', '4.3', '4.4'],
-  ['5.1', '5.2', '5.3', '5.4']
+  ['?', '#', '.', ','],
+  ['event.preventDefault', 'preventDefault()', 'preventRefresh()', 'event.preventDefault()'],
+  ['alert()', 'prompt = ""', 'prompt()', 'prompt'],
+  ['img', 'div', 'main', 'script']
 ]
 
 // Array with the correct answers for each 
 let correctAnswers = [
   'console.Log("Hello World!")',
-  '',
-  '',
-  '',
-  ''
+  '.',
+  'event.preventDefault()',
+  'prompt()',
+  'div'
 ]
 
 // A counter for timing the quiz
@@ -60,18 +63,17 @@ document.getElementById('start').addEventListener('click', () => {
     if (quizFinished) {
       quizFinished = false
       clearInterval(timer)
-
     } else {
+      // Decrements counter then sets "Timer" with new time left
+      counter = Math.max(counter - 1, 0);
+      document.getElementById('timer').textContent = `Timer: ${counter}`
+
       // Checks if time is up
-      if(counter <= 1) {
+      if(counter <= 0) {
         // Ends interval and hides the quiz materials
         clearInterval(timer)
         document.getElementById('quiz').classList.add('hide')
-        document.getElementById('answers').classList.add('hide')
-      } else {
-        // If time isn't up, decrements counter then sets "Timer" with new time left
-        counter--;
-        document.getElementById('timer').textContent = `Timer: ${counter}`
+        document.getElementById('highscores').remove('hide')
       }
     }
   }, 1000)
@@ -83,7 +85,7 @@ document.addEventListener('click', event => {
   if(event.target.classList.contains('answer')) {
     // Checks if the answer chosen was correct
     if (event.target.textContent !== correctAnswers[current]) {
-      counter -= 15
+      counter = Math.max(counter - 15, 0)
       document.getElementById('timer').textContent = `Timer: ${counter}`
     }
 
@@ -100,12 +102,24 @@ document.addEventListener('click', event => {
       for (let i = 0; i < answers[current].length; i++) {
         document.getElementById(`answer${i + 1}`).textContent = answers[current][i]
       }
-    }
-    else {
+    } else {
       // Hides the quiz display
       document.getElementById('quiz').classList.add('hide')
-      document.getElementById('introduction').classList.remove('hide')
+      document.getElementById('highscores').classList.remove('hide')
       quizFinished = true
     }
   }
+})
+
+// Listens for a user trying to save their score
+document.getElementById('save').addEventListener('click', event => {
+  // Prevents default when saving score
+  event.preventDefault()
+
+  // Adds score to list of high scores, then replaces local storage scores with new scores
+  scores.push(`${document.getElementById('name').value}: ${counter}`)
+  localStorage.setItem('scores', JSON.stringify(scores))
+  
+  // Clears input value
+  document.getElementById('name').value = ''
 })

@@ -62,13 +62,17 @@
     </section>
 
     <!-- This section is a game over screen for if the timer runs out -->
-    <section id="gameOver" class="row justify-content-center hide">
+    <section id="highscores" class="row justify-content-center hide">
       <article class="col-sm-6 centered">
-        <h1>Game Over!</h1>
-        <h4>
-          You ran out of time! But don't worry, I know you can do it! Come on, give it another try!
-        </h4>
-        <button id="retry" class="btn btn-success startQuiz" type="button">Retry Quiz!</button>
+        <h1>Put in your name to save your score!</h1>
+        <form>
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name">
+          </div>
+          <button id="save" class="btn btn-success" type="button">Save Score!</button>
+          <button id="return" class="btn btn-success" type="button">Return to Start!</button>
+        </form>
       </article>
     </section>
   </main>
